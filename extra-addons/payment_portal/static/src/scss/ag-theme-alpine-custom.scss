@@ -1,0 +1,220 @@
+.ag-theme-alpine {
+
+    height: 410px !important;
+    font-family: var(--font-family-portal);
+
+
+    .ag-root-wrapper {
+        @extend .ag-root-wrapper;
+        
+
+        ::-webkit-scrollbar {
+            width: 6px;               /* Ancho del scrollbar vertical */
+            height: 6px;              /* Altura del scrollbar horizontal */
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;      /* Color de fondo de la pista del scrollbar */
+            border-radius: 10px;      /* Radio de borde para hacer los bordes redondeados */
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #a8a6a6;         /* Color de la parte desplazable del scrollbar */
+            border-radius: 10px;      /* Radio de borde */
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #989797;         /* Color cuando se coloca el cursor sobre el scrollbar */
+        }
+    }
+
+    .ag-header-cell {
+        @extend .ag-header-cell;
+        background-color: white;
+    }
+    
+    .ag-header-cell-resize {
+        @extend .ag-header-cell-resize;
+        display: none !important;
+    }
+    
+    
+    .ag-row {
+        @extend .ag-row;
+    }
+    
+    .ag-row-odd {
+        @extend .ag-row-odd;
+        background-color: white !important;
+    }
+
+    .ag-header-cell-text {
+        @extend .ag-header-cell-text;
+        font-family: var(--font-family-portal);
+    }
+
+    .ag-cell-value {
+        @extend .ag-cell-value;
+        font-family: var(--font-family-portal);
+    }
+
+
+    .ag-paging-page-size {
+        @extend .ag-paging-page-size;
+        display: none;
+    }
+
+    .ag-paging-row-summary-panel {
+        @extend .ag-paging-row-summary-panel;
+        font-family: var(--font-family-portal);
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+    }
+
+    .ag-paging-page-summary-panel {
+        @extend .ag-paging-page-summary-panel;
+        font-family: var(--font-family-portal);
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+    }
+
+
+    // Custom styles for the portal
+    .ag-portal-cell-value-state {
+        font-family: var(--font-family-portal);
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+
+
+
+        // INVOICE STATUS
+        &--paid  {
+            @extend .ag-portal-cell-value-state;
+            padding: 0;
+            color:#2BBF6D !important;
+
+
+            svg {
+                height: 8px;
+                width: 10px;
+            }
+        }
+
+
+        &--unpaid {
+            @extend .ag-portal-cell-value-state;
+            padding: 0;
+            color:#Ff0000 !important;
+
+
+            svg {
+                height: 8px;
+                width: 10px;
+            }
+        }
+
+
+        &--partial {
+            @extend .ag-portal-cell-value-state;
+            padding: 0;
+            color: var(--color-orange-portal) !important;
+
+
+            svg {
+                height: 8px;
+                width: 10px;
+            }
+        }
+
+
+        &--in-payment {
+            @extend .ag-portal-cell-value-state;
+            padding: 0;
+            color: var(--color-yellow-portal) !important;
+
+            svg {
+                height: 8px;
+                width: 10px;
+            }
+        }
+
+        // PAYMENT STATUS
+        &--posted  {
+            @extend .ag-portal-cell-value-state;
+            padding: 0;
+            color:#2BBF6D !important;
+
+
+            svg {
+                height: 8px;
+                width: 10px;
+            }
+        }
+
+
+
+        &--draft {
+            @extend .ag-portal-cell-value-state;
+            padding: 0;
+            color:#F1BA67 !important;
+
+
+            svg {
+                height: 8px;
+                width: 10px;
+            }
+        }
+    }
+
+
+    .ag-portal-button-retention {
+        font-family: var(--font-family-portal);
+        background-color: var(--bg-form-color);
+        border-color: var(--buttons-standar-color);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        width: 100px;
+    }
+
+    .ag-portal-retention-edit {
+        display: flex;
+        align-items: center;
+
+        .ag-portal-retention-button-edit {
+            font-family: var(--font-family-portal);
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            background-color: transparent;
+            border: none;
+            color: #E16944;
+            vertical-align: bottom;
+
+            svg {
+                width: 14px;
+                height: 30px;
+            }
+        }
+    
+    
+        .ag-portal-retention-text-file {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            color: var(--color-font-primary);
+            font-family: var(--font-family-portal);
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            display: inline-block;
+            width: 100px;
+        }
+    }
+
+}

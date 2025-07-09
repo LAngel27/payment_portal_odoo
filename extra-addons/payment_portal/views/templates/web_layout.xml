@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <template id="frontend_layout_inh" inherit_id="web.layout">
+        <xpath expr="//head/link[last()]" position="after">
+            <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+        </xpath>
+    </template>
+
+</odoo>

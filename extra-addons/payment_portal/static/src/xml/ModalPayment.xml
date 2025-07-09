@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="payment_portal.ModalPayment" owl="1">
+        <div class="container">
+            <div class="modal portal-modal-payment fade" t-ref="modalPayment" data-bs-backdrop="static" data-bs-keyboard="false" id="ModalPayment" tabindex="-1" aria-labelledby="ModalPaymentLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content portal-modal-payment__box">
+                        <div class="modal-header portal-modal-payment__header">
+                            <h2 class="modal-title" id="ModalPaymentLabel" t-if="!state.paymentSend and !state.paymentSendError">Register Payment</h2>
+                            <button type="button" class="btn-close" t-on-click="_onChangeToBlankState" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body portal-modal-payment__inside_body">
+                            <form id="paymentForm" role="form" t-if="!state.paymentSend and !state.paymentSendError" t-ref="formSendPayment">
+                                <input type="hidden" name="csrf_token" t-att-value="state.token"/>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="partnerId"> Account Holder Name: </label>
+                                            <input name="partnerId" t-att-value="state.partnerName" t-on-change="_onChangePartner" type="text" required="True"/>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="date"> Payment Date:</label>
+                                            <input name="date" t-att-value="state.date" t-on-change="_onChangeDate" type="date" required="True"/>
+                                        </div>
+                                        <div class="mb-3">
+                                            <t t-if="props.view == 'invoices'">
+                                                <label for="invoiceName"> Invoice Number:</label>
+                                                <input name="invoiceName" t-att-value="state.invoiceName" t-on-change="_onChangeInvoiceName" type="text" required="True"/>
+                                            </t>
+                                            <t t-else="">
+                                                <label for="memo"> Memo:</label>
+                                                <input name="memo" t-att-value="state.memo" t-on-change="_onChangeMemo" type="text" required="True"/>
+                                            </t>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="paymentType"> Payment Type: </label>
+                                            <select name="paymentType" t-att-value="state.paymentType" t-on-change="_onChangePaymentType" required="True">
+                                                <option value="deposit"> Deposit </option>
+                                                <option value="transfer"> Transfer </option>
+                                                <option value="cash"> Cash </option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="currencyId"> Currency: </label>
+                                            <select class="currency_selection" name="currencyId" t-att-value="state.currencyId" t-on-change="_onChangeCurrencyId" required="True">
+                                                <t t-foreach="state.currencies" t-as="currency" t-key="currency.currency_id">     
+                                                    <option t-att-value="currency.currency_id" >
+                                                        <t t-esc="currency.symbol" />
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="amount"> Amount: </label>
+                                            <input class="currencyBox" name="amount" t-att-value="state.amount" t-on-change="_onChangeAmount" type="number" min="0" step="0.01" required="True"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="vat" class="mb-0"> Identification Document:</label>
+                                            <input name="vat" t-att-value="state.vat" type="text" required="True" t-on-change="_onChangeVat"/>
+                                        </div>
+                                        <div class="mb-3" t-if="state.paymentType === 'transfer'">
+                                            <label t-ref="bankEmissor" for="emissorBank"> Issuer Bank: </label>
+                                            <select name="emissorBank" t-att-disabled="state.paymentType == 'cash'" t-att-value="state.emissorBankSelected" t-on-change="_onChangeEmissorBank" required="True">
+                                                <option value="" selected="selected" disabled="disabled"> </option>
+                                                <t t-foreach="state.banks" t-as="bank" t-key="bank.id">
+                                                    <option t-att-value="bank.bank_name">
+                                                        <t t-esc="bank.bank_name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label t-ref="reference" for="ref"> Reference:</label>
+                                            <input name="ref" t-att-disabled="state.paymentType == 'cash'" t-att-value="state.ref" t-on-change="_onChangeRef" type="text" />
+                                        </div>
+                                        <div class="mb-3" t-if="state.paymentType === 'transfer'">
+                                            <label t-ref="bankReception" for="bankReception"> Recipient Bank: </label>
+                                            <select name="bankReception" t-att-disabled="state.paymentType == 'cash'" t-att-value="state.bankReception" t-on-change="_onChangeBankReception" required="True">
+                                                <option value="" selected="selected" disabled="disabled"> </option>
+                                                <t t-foreach="state.banks" t-as="bank" t-key="bank.id">
+                                                    <option  t-att-value="bank.id">  
+                                                        <t t-esc="bank.bank_name" />
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="paymentAttachment">Payment Receipt:</label>
+                                            <div class="attachmentDiv">
+                                                <input type="file" id="paymentAttachment" name="paymentAttachment" t-on-change="_onChangePaymentAttachment"/>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="observation"> Observation:</label>
+                                            <input name="observation" t-att-value="state.observation" type="text" t-on-change="_onChangeObservation"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <t t-if="state.paymentSend">
+                                <div class="portal-modal-payment__message">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="73" height="73" viewBox="0 0 73 73" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M36.5 9.30039C21.4226 9.30039 9.19999 21.523 9.19999 36.6004C9.19999 51.6778 21.4226 63.9004 36.5 63.9004C51.5774 63.9004 63.8 51.6778 63.8 36.6004C63.8 21.523 51.5774 9.30039 36.5 9.30039ZM0.799988 36.6004C0.799988 16.8838 16.7834 0.900391 36.5 0.900391C56.2165 0.900391 72.2 16.8838 72.2 36.6004C72.2 56.317 56.2165 72.3004 36.5 72.3004C16.7834 72.3004 0.799988 56.317 0.799988 36.6004ZM49.9698 26.6305C51.61 28.2707 51.61 30.93 49.9698 32.5702L35.9698 46.5702C34.3296 48.2104 31.6703 48.2104 30.0301 46.5702L23.0301 39.5702C21.3899 37.93 21.3899 35.2707 23.0301 33.6305C24.6703 31.9903 27.3296 31.9903 28.9698 33.6305L33 37.6607L44.0301 26.6305C45.6703 24.9903 48.3296 24.9903 49.9698 26.6305Z" fill="#2BBF6D"/>
+                                    </svg>
+                                    <p class="portal-modal-payment__message_success">Payment registered successfully.</p>
+                                </div>
+                            </t>
+                            
+                            
+                            <t t-if="state.paymentSendError">
+                                <div class="portal-modal-payment__message">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="69" viewBox="0 0 70 69" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M35.0001 8.11765C20.2183 8.11765 8.23536 19.9294 8.23536 34.5C8.23536 49.0706 20.2183 60.8824 35.0001 60.8824C49.7818 60.8824 61.7648 49.0706 61.7648 34.5C61.7648 19.9294 49.7818 8.11765 35.0001 8.11765ZM6.10352e-05 34.5C6.10352e-05 15.4462 15.6701 0 35.0001 0C54.33 0 70.0001 15.4462 70.0001 34.5C70.0001 53.5538 54.33 69 35.0001 69C15.6701 69 6.10352e-05 53.5538 6.10352e-05 34.5ZM25.2257 24.8653C26.8337 23.2802 29.4409 23.2802 31.0489 24.8653L35.0001 28.76L38.9512 24.8653C40.5592 23.2802 43.1664 23.2802 44.7744 24.8653C46.3825 26.4503 46.3825 29.0202 44.7744 30.6053L40.8233 34.5L44.7744 38.3947C46.3825 39.9798 46.3825 42.5497 44.7744 44.1347C43.1664 45.7198 40.5592 45.7198 38.9512 44.1347L35.0001 40.24L31.0489 44.1347C29.4409 45.7198 26.8337 45.7198 25.2257 44.1347C23.6177 42.5497 23.6177 39.9798 25.2257 38.3947L29.1768 34.5L25.2257 30.6053C23.6177 29.0202 23.6177 26.4503 25.2257 24.8653Z" fill="#EB4760"/>
+                                    </svg>
+                                    <p class="portal-modal-payment__message_error">Server error, payment could not be registered.</p>
+                                </div>
+                            </t>
+
+                        </div>
+                        <div class="modal-footer portal-modal-payment__footer" t-if="!state.paymentSend and !state.paymentSendError">
+                            <button type="button" class="btn btn-primary create_payment" t-on-click="_onClickSendPayment" t-att-disabled="state.showLoader">
+                                <t t-if="state.showLoader">
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    <span class="sr-only ml-2">Processing...</span>
+                                </t>
+                                <t t-else="">
+                                    Create Payment
+                                </t>
+                            </button>
+                            <button type="button" class="btn btn-secondary discard_payment" t-on-click="_onChangeToBlankState" data-bs-dismiss="modal" t-att-disabled="state.showLoader">
+                                Discard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,164 @@
+.portal-payment {
+    margin-top: 24px;
+    border-color: var(--buttons-standar-color);
+    font-family: var(--font-family-portal);
+
+    &__container {
+        overflow-x: auto;
+    }
+
+    &__title {
+        color: #1F2227;
+        font-family: var(--font-family-portal);
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 32px;
+        margin: 22px 0;
+    }
+
+    &__toggles {
+        border-bottom: 1px solid #D2D6DE;
+        display: flex;
+        gap: 100px;
+        padding-left: 0px;
+
+
+        button {
+            background-color: white;
+            width: 100px;
+            border: none;
+            color: var(--buttons-standar-color);
+            text-align: center;
+            font-family: var(--font-family-portal);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 32px;
+            position: relative;
+            transition: 0.4s ease;
+
+            &:focus {
+                outline: none;
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: .5px;
+                background-color: var(--buttons-standar-color);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.5s ease;
+            }
+
+            &:hover:before {
+                transform: scaleX(1);
+            }
+        }
+
+        .active {
+            font-weight: 700;
+
+            &:before {
+                transform: scaleX(1);
+            }
+        }
+    }
+
+
+
+
+    &__operations {
+        font-family: var(--font-family-portal);
+        width: 100%;
+        margin: 24px 0;
+        padding: 0 0;
+        border: 1px solid #E3E6EC;
+        border-radius: 12px;
+
+
+        &__count {
+
+            padding: 22px 22px;
+            margin-top: 22px;
+
+            span:first-child {
+                color: #1F2227;
+                font-family: var(--font-family-portal);
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 32px;
+            }
+
+            span:last-child {
+                color: #9DA4B2;
+                font-family: var(--font-family-portal);
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 32px;
+            }
+
+        }
+
+
+        &__add-payment {
+            position: relative;
+            margin-right: 22px;
+
+
+            button {
+                width: 146px;
+                height: 36px;
+                border-radius: 8px;
+                border: transparent;
+                background: var(--buttons-standar-color);
+                color: #F8F9FA;
+                font-family: var(--font-family-portal);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 32px;
+
+                &:focus {
+                    outline: none;
+                }
+
+                @media (max-width: 1000px) {
+                    width: 100%;
+                }
+            }
+
+
+            svg {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                height: 16px;
+                width: 12px;
+                transform: translateY(-50%);
+                pointer-events: none;
+            }
+
+            @media (max-width: 1000px) {
+                margin: 20px 20px 0
+            }
+        }
+    }
+
+
+    #invoices {
+        height: 300px;
+    }
+
+
+
+    #payments {
+        height: 300px;
+    }
+}

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+
+    <template id="payment_portal.login_portal" name="Login Portal Payment">
+        <t t-call="payment_portal.login_layout">
+            <div class="portal-payment-login row">
+                <div class="portal-payment-login__logo col-6">
+                    <img src="/payment_portal/static/src/img/login_picture.png" alt="Portal Logo"/>
+                </div>
+                <div class="oe_login_form portal-payment-login__form col-6 ">
+                    <div class="login_div">
+                        <p>Login</p>
+                    </div>
+                    <form  role="form" t-attf-action="/login/portal/payment" method="post" onsubmit="this.action = '/login/portal/payment' + location.hash">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                        <p class="greet">¡Hello!</p>
+
+                        <div class="mb-3 field-login">
+                            <input type="text" placeholder="Correo electrónico" name="login" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="username" autofocus="autofocus" autocapitalize="off"/>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" placeholder="Contraseña" name="password" id="password" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>
+                        </div>
+                        <p class="alert alert-danger" t-if="error" role="alert">
+                            <t t-esc="error"/> 
+                        </p>
+                        <p class="alert alert-success" t-if="message" role="status">
+                            <t t-esc="message"/>
+                        </p>
+
+                        <div t-attf-class="clearfix oe_login_buttons text-center gap-1 d-grid mb-1 {{'pt-2' if form_small else 'pt-3'}}">
+                            <button type="submit" class="btn portal-payment-login__login_button">Login</button>
+                            <div class="o_login_auth"/>
+                        </div>
+
+                        <input type="hidden" name="redirect" t-att-value="redirect"/>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,167 @@
+.portal-modal-confirm-retention{
+    font-size: 15px;
+    font-family: var(--font-family-portal);
+
+    &__header{
+        font-family: var(--font-family-portal);
+        margin: 0;
+        padding: 22px 44px;
+        border-bottom: none !important;
+        h2{
+            font-weight: bold;
+            font-size: 34px ;
+        }
+    }
+
+    &__footer{
+        font-family: var(--font-family-portal);
+        margin: 0;
+        padding: 0 44px 22px 44px !important;
+        border-top: none !important;
+        display: flex;
+        justify-content: end;
+        button{
+            font-family: var(--font-family-portal);
+            padding: 10px 16px;
+        }
+        .confirmRetention{
+            font-family: var(--font-family-portal);
+            background-color: #F8F9FA;
+            border-color:#2BBF6D;
+            color: #2BBF6D;
+            border-radius: 8px;
+            border: 1px solid #2BBF6D;
+        }
+        .discardRetention{
+            font-family: var(--font-family-portal);
+            background-color: #F8F9FA;
+            border-color:#EB4760;
+            color: #EB4760;
+            border-radius: 8px;
+            border: 1px solid #EB4760;
+        }
+
+        .create_payment{
+            font-family: var(--font-family-portal);
+            background-color: #595F6D;
+            color: #F8F9FA;
+        }
+        .discard_payment{
+            font-family: var(--font-family-portal);
+            color: #595F6D;
+            background-color: #F8F9FA;
+            border-color: #595F6D;
+            margin-left: 22px;
+        }
+        svg{
+            margin-right:10px;
+        }
+    }
+
+    // &__box{
+    //     width:140%;
+    // }
+
+
+    &__message {
+        font-family: var(--font-family-portal);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+        height: 190px;
+
+
+
+        &_success {
+            color: #2BBF6D;
+            text-align: center;
+            font-family:  var(--font-family-portal);
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 32px;
+        }
+
+
+        &_error {
+            color: #EB4760;
+            text-align: center;
+            font-family: var(--font-family-portal);
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 32px;
+        }
+    }
+
+    &__inside_body{
+        font-family: var(--font-family-portal);
+        margin: 0;
+        padding: 0 44px 22px 44px !important;
+        p{
+            font-family: var(--font-family-portal);
+            font-weight: 900;
+            display: flex;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        svg{
+            margin-left:10px;
+        }
+        input{
+            font-family: var(--font-family-portal);
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid #E3E6EC;
+            border-left: none;
+            font-weight: 500 ;
+            width: 200px;
+            margin-left: auto;
+
+            &:focus{
+                outline: none;
+            }
+        }
+        .attachmentRetentionDiv{
+            font-family: var(--font-family-portal);
+            padding:10px, 0;
+            margin: 0;
+            font-size: 15px;
+            display: flex; // Add flexbox to the container 
+            align-items: center; // Ensure items are aligned center vertically
+            .custom-file-upload-retention{
+                font-family: var(--font-family-portal);
+                width:100%;
+                display: flex; // Use flexbox for the label 
+                align-items: center; // Center the items vertically 
+                width: 100%;
+                height:50px;
+            }
+            span { 
+                font-family: var(--font-family-portal);
+                border-bottom: 1px solid #595F6D; 
+                flex-grow: 1; // Allow the span to grow and take up remaining space 
+                margin-right: 10px; // Add some space between the span and the SVG 
+                }
+            svg{
+                font-family: var(--font-family-portal);
+                flex-shrink: 0; // Prevent the SVG from shrinking 
+                cursor: pointer; // Make the SVG clickable
+                border: 1px solid #595F6D;
+                border-radius:8px;
+                padding: 6px;
+                height: 30px;
+                width: 30px;
+            }
+        }
+        .invoiceTitleDiv{
+            font-family: var(--font-family-portal);
+            height: 52.067px;
+            margin-bottom: 22px;
+            font-size: 22px;
+        }
+    }
+
+}

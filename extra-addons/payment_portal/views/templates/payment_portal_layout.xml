@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+
+    <template id="payment_portal.login_layout" name="Login Layout">
+        <t t-call="web.frontend_layout">
+            <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="container" t-value="False"/>
+
+            <div t-attf-class="#{'container' if container else ''} portal-payment-login__container">
+                <t t-out="0"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

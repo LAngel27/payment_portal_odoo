@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="payment_portal.PortalPayment" owl="1">
+        <Navbar title="state.titleSection" companyName="state.companyName" userName="state.userName" userEmail="state.userEmail"/>
+        <div class="container-portal">
+            <div class="portal-payment row">
+                <div class="col-12 portal-payment__toggles">
+                    <button t-attf-class="portal-payment__toggle--invoices {{ state.view === 'invoices' ? 'active' : ''}}" t-on-click="_onClickViewInvoices">Facturas</button>
+                    <button t-attf-class="portal-payment__toggle--payments {{ state.view === 'payments' ? 'active' : ''}}" t-on-click="_onClickViewPayments">Pagos</button>
+                </div>
+
+
+                <div class="portal-payment__operations">
+
+                    <div class="portal-payment__filter">
+                        <div class="portal-payment__filter__item">
+                            <div class="portal-payment__filter__item__search">
+                                <input type="text" placeholder="Buscar..." t-ref="inputSearchName"/>
+                                <div style="cursor: pointer;" t-on-click="_onClickSearchName">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                        <path d="M11 11L7.66667 7.66667M8.77778 4.88889C8.77778 7.03666 7.03666 8.77778 4.88889 8.77778C2.74111 8.77778 1 7.03666 1 4.88889C1 2.74111 2.74111 1 4.88889 1C7.03666 1 8.77778 2.74111 8.77778 4.88889Z" stroke="#838A9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="filter-dropdown">
+                                <button class="filter-button" t-on-click="_onToggleDropdown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.33333C0 0.596954 0.596954 0 1.33333 0H10.6667C11.403 0 12 0.596954 12 1.33333V2.39052C12 2.74415 11.8595 3.08329 11.6095 3.33333L8 6.94281L8 10.2546C8 10.7597 7.71466 11.2214 7.26295 11.4472L5.92962 12.1139C5.04308 12.5571 4 11.9125 4 10.9213V6.94281L0.390524 3.33333L0.861929 2.86193L0.390524 3.33333C0.140475 3.08328 0 2.74415 0 2.39052V1.33333ZM10.6667 1.33333H1.33333V2.39052L4.94281 6C5.19286 6.25005 5.33333 6.58919 5.33333 6.94281V10.9213L6.66667 10.2546V6.94281C6.66667 6.58919 6.80714 6.25005 7.05719 6L10.6667 2.39052V1.33333Z" fill="#31465B"/>
+                                    </svg>
+                                </button>
+                            
+                                <div t-attf-class="dropdown-menu {{ state.openFilterState ? 'active' : '' }}">
+                                    <div class="dropdown-header"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.33333C0 0.596954 0.596954 0 1.33333 0H10.6667C11.403 0 12 0.596954 12 1.33333V2.39052C12 2.74415 11.8595 3.08329 11.6095 3.33333L8 6.94281L8 10.2546C8 10.7597 7.71466 11.2214 7.26295 11.4472L5.92962 12.1139C5.04308 12.5571 4 11.9125 4 10.9213V6.94281L0.390524 3.33333L0.861929 2.86193L0.390524 3.33333C0.140475 3.08328 0 2.74415 0 2.39052V1.33333ZM10.6667 1.33333H1.33333V2.39052L4.94281 6C5.19286 6.25005 5.33333 6.58919 5.33333 6.94281V10.9213L6.66667 10.2546V6.94281C6.66667 6.58919 6.80714 6.25005 7.05719 6L10.6667 2.39052V1.33333Z" fill="#31465B"/>
+                                    </svg>
+                                    <span>Filters</span>
+                                    </div>
+                                    <ul class="dropdown-list">
+                                        <t t-if="state.view === 'invoices'">
+                                            <li class="dropdown-item"
+                                                t-att-data-value="'paid'"
+                                                t-attf-class="dropdown-item {{ state.filterState == 'paid' ? 'active' : '' }}"
+                                                t-on-click="_onClickItemState">
+                                                Paid
+                                                <i t-if="state.filterState == 'paid'" class="fa fa-check" aria-hidden="true"></i>
+                                            </li>
+                                            <li class="dropdown-item"
+                                                t-att-data-value="'in_payment'"
+                                                t-attf-class="dropdown-item {{ state.filterState == 'in_payment' ? 'active' : '' }}"
+                                                t-on-click="_onClickItemState">
+                                                In Payment Process
+                                                <i t-if="state.filterState == 'in_payment'" class="fa fa-check" aria-hidden="true"></i>
+                                            </li>
+                                            <li class="dropdown-item"
+                                                t-att-data-value="'partial'"
+                                                t-attf-class="dropdown-item {{ state.filterState == 'partial' ? 'active' : '' }}"
+                                                t-on-click="_onClickItemState">
+                                                Partially Paid
+                                                <i t-if="state.filterState == 'partial'" class="fa fa-check" aria-hidden="true"></i>
+                                            </li>
+                                            <li class="dropdown-item"
+                                                t-att-data-value="'not_paid'"
+                                                t-attf-class="dropdown-item {{ state.filterState == 'not_paid' ? 'active' : '' }}"
+                                                t-on-click="_onClickItemState">
+                                                To Pay
+                                                <i t-if="state.filterState == 'not_paid'" class="fa fa-check" aria-hidden="true"></i>
+                                            </li>
+                                            <hr class="dropdown-separator" />
+                                            <li class="dropdown-item"
+                                                t-att-data-value="'defeated'"
+                                                t-attf-class="dropdown-item {{ state.filterState == 'defeated' ? 'active' : '' }}"
+                                                t-on-click="_onClickItemState">
+                                                Overdue
+                                                <i t-if="state.filterState == 'defeated'" class="fa fa-check" aria-hidden="true"></i>
+                                            </li>
+                                            <li class="dropdown-item"
+                                                t-att-data-value="'current'"
+                                                t-attf-class="dropdown-item {{ state.filterState == 'current' ? 'active' : '' }}"
+                                                t-on-click="_onClickItemState">
+                                                Current
+                                                <i t-if="state.filterState == 'current'" class="fa fa-check" aria-hidden="true"></i>
+                                            </li>
+                                        </t>
+                                        
+                                        <t t-if="state.view === 'payments'">
+                                            <li class="dropdown-item"
+                                                t-att-data-value="'draft'"
+                                                t-attf-class="dropdown-item {{ state.filterState == 'draft' ? 'active' : '' }}"
+                                                t-on-click="_onClickItemState">
+                                                To Confirm
+                                                <i t-if="state.filterState == 'draft'" class="fa fa-check" aria-hidden="true"></i>
+                                            </li>
+                                            <li class="dropdown-item"
+                                                t-att-data-value="'confirmed'"
+                                                t-attf-class="dropdown-item {{ state.filterState == 'confirmed' ? 'active' : '' }}"
+                                                t-on-click="_onClickItemState">
+                                                Confirmed
+                                                <i t-if="state.filterState == 'confirmed'" class="fa fa-check" aria-hidden="true"></i>
+                                            </li>
+                                        </t>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                
+                
+                            <div class="portal-payment__filter__item__date">
+                                <input type="date" t-att-id="daterange" name="date" t-ref="inputSearchDate" placeholder="Choose Dates" t-on-change="_onChangeDate" t-att-value="state.dateFilter"/>
+                            </div>
+                        </div>
+                        
+                        <div class="portal-payment__operations__add-payment" t-if="state.showPaymentButton">
+                            <button data-bs-toggle="modal" data-bs-target="#ModalPayment">Add Payment</button>
+                        </div>
+
+                    </div>
+                    
+                    <ModalPayment view="state.view" references="state.references"/>
+
+                    
+                    <div class="ag-theme-alpine" id="invoices" t-if="state.view === 'invoices'">
+                    </div>
+                    
+                    
+                    <div class="ag-theme-alpine" id="payments" t-if="state.view === 'payments'">
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </t>
+
+
+</templates>

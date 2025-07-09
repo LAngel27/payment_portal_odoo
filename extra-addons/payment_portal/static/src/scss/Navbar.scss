@@ -1,0 +1,106 @@
+.portal-payment-navbar {
+    padding: 22px 0px 14px 0px;
+    font-family: var(--font-family-portal);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+
+        h1 {
+            color: var(--buttons-standar-color);
+            font-family: var(--font-family-portal);
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 32px;
+        }
+    }
+
+
+    &__session {
+        font-family: var(--font-family-portal);
+        justify-content: end;
+        display: flex;
+        gap: 15px;
+
+        img {
+            height: 32px;
+            width: 32px;
+            border-radius: 0.3rem;
+        }
+
+        .dropdown {
+
+            &-toggle {
+                font-family: var(--font-family-portal);
+                background-color: white;
+                border: none;
+
+                svg {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+
+            &-toggle::after {
+                display: none;
+            }
+        }
+
+
+        &__user {
+            font-family: var(--font-family-portal);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+
+            p {
+                font-family: var(--font-family-portal);
+                margin: 0;
+            }
+
+
+            p:first-child {
+                color: var(--buttons-standar-color);
+                font-family: var(--font-family-portal);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 16px;
+            }
+
+            p:last-child {
+                color: #717888;
+                font-family: var(--font-family-portal);
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 12px;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            width: 100%;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+        }
+    }
+
+    @media (max-width: 1000px) {
+        flex-direction: column;
+        align-items: end;
+        
+        &__title {
+            order: 1;
+            width: 100%;
+            text-align: center;
+            
+            h1 {
+                font-size: 26px;
+            }
+        }
+    }
+}

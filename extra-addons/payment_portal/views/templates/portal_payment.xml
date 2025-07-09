@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <template id="payment_portal.portal_payment" name="Portal Payment">
+        <t t-call="web.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+
+
+            <div class="container-portal-payment" id="portal-payment">
+            </div>
+        
+        </t>
+    </template>
+
+</odoo>

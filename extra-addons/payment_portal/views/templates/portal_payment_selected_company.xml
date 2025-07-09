@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <template id="payment_portal.portal_selected_company" name="Portal Select Company">
+        <t t-call="payment_portal.login_layout">
+            <div class="portal-payment-company row">
+                <div class="portal-payment-company__logo col-6">
+                    <img src="/payment_portal/static/src/img/company_selection_picture.png" alt="Portal Logo"/>
+                </div>
+                <div class="oe_login_form portal-payment-company__form col-6">
+                    <div class="login_div">
+                        <p>Company</p>
+                    </div>
+                    <form role="form" action="/portal/payment/companies" method="post">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <p class="greet">¡Hello <t t-esc="request.env.user.name"/>!</p>
+                        
+                        <div class="mb-3 field-select-company">
+                            <label class="company_selection" for="company_id">Select the company you want to consult:</label>
+                            <select name="company_id" id="company_id" class="form-select text_input form-control" t-att-required="true">
+                                <option value="">Search company by name...</option>
+                                <t t-foreach="companies" t-as="company">
+                                    <option t-att-value="company.id">
+                                        <t t-esc="company.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn portal-payment-company__buttons">Enter</button>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

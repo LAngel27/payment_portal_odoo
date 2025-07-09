@@ -1,0 +1,258 @@
+.portal-payment__filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+    font-family: var(--font-family-portal);
+
+
+
+    &__item {
+        font-family: var(--font-family-portal);
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 22px;
+        padding: 0px 22px 0px 22px;
+
+        &__search {
+            font-family: var(--font-family-portal);
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            input {
+                display: flex;
+                width: 320px;
+                width: 100%;
+                height: 36px;
+                padding: 8px 12px 8px 32px;
+                align-items: center;
+                gap: 8px;
+                border-radius: 8px;
+                border: 1px solid #B6BCC8;
+                color: #838A9A;
+                font-family: var(--font-family-portal);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 32px;
+                margin-right: 16px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            svg {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
+        }
+
+        .filter-dropdown {
+            font-family: var(--font-family-portal);
+            position: relative;
+            display: inline-block;
+
+            .filter-button {
+                font-family: var(--font-family-portal);
+                height: 36px;
+                border-radius: 8px;
+                padding: 4px 16px;
+                border: 1px solid hsl(220, 14%, 75%);
+                background: transparent;
+                font-family: var(--font-family-portal);
+
+                &__filter-svg {
+                    position: absolute;
+                    left: 40%;
+                    top: 52%;
+                }
+
+                &:hover {
+                    border: 1px solid #B6BCC8;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+
+            }
+
+            .dropdown-menu {
+                font-family: var(--font-family-portal);
+                display: none;
+                position: absolute;
+                top: 40px;
+                /* Ajusta según el botón */
+                left: 0;
+                background: #fff;
+                border: 1px solid #B6BCC8;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                width: 200px;
+                z-index: 10;
+
+                &.active {
+                    display: block;
+                }
+
+                .dropdown-header {
+                    font-family: var(--font-family-portal);
+                    padding: 0;
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: #595F6D;
+                    margin-bottom: 8px;
+                    border-bottom: 1px solid #595F6D;
+
+
+                    span {
+                        color: #31465B;
+                        font-family: var(--font-family-portal);
+                        font-size: 15px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 32px;
+                        margin-left: 8px;
+                    }
+
+                    svg {
+                        margin-left: 8px;
+                    }
+                }
+
+                .dropdown-list {
+                    font-family: var(--font-family-portal);
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    padding: 8px;
+
+                    .dropdown-item {
+                        font-family: var(--font-family-portal);
+                        padding: 8px 12px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        color: #31465B;
+                        font-family: var(--font-family-portal);
+
+                        li {
+                            list-style: none;
+                            color: #31465B;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 32px;
+                        }
+
+                        &:hover {
+                            background: #F5F5F5;
+                            border-radius: 4px;
+                        }
+
+                        &.active {
+                            background: #F5F5F5;
+                            border-radius: 4px;
+                        }
+                    }
+
+                    .dropdown-separator {
+                        border: none;
+                        border-top: 1px solid #B6BCC8;
+                        margin: 4px 0;
+                    }
+                }
+            }
+        }
+
+
+        &__date {
+
+            position: relative;
+            width: 200px;
+            cursor: pointer;
+
+            input {
+                border-radius: 8px;
+                border: 1px solid #B6BCC8;
+                background: transparent;
+                color: #595F6D;
+                font-family: var(--font-family-portal);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                height: 36px;
+                padding: 8px 12px 8px 10px;
+                width: 100%;
+                text-align: center;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            @media (max-width: 1000px) {
+                width: 100%;
+            }
+        }
+
+        &__rate {
+
+            position: relative;
+            width: 220px;
+
+            p {
+                border-radius: 8px;
+                border: 1px solid #e7eaf1;
+                background: #f0f3f9;
+                color: #595F6D;
+                font-family: var(--font-family-portal);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                height: 36px;
+                padding: 8px 12px 8px 10px;
+                width: 100%;
+                text-align: center;
+                margin: 0;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            span {
+                font-weight: bolder;
+            }
+
+            @media (max-width: 1000px) {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            display: block;
+            width: 100%;
+
+            &>* {
+                width: 100%;
+                margin-bottom: 16px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+
+    @media (max-width: 1000px) {
+        display: block;
+    }
+
+}
