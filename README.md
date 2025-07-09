@@ -75,7 +75,7 @@ extra-addons/payment_portal
 For a complete guide on how to install, configure, and use this module in Odoo, check the following video:
 
 🎥 **Watch the step-by-step video tutorial for functional module setup**  
-👉 [https://tulink.video/tutorial-modulo](https://app.govideolink.com/blocks/Hb57Msf5WfmpS7dpQcKI/?utm_source=direct&utm_medium=invite_link) ← *(replace this link with the real one when available)*
+👉 [https://video/tutorial](https://app.govideolink.com/blocks/Hb57Msf5WfmpS7dpQcKI/?utm_source=direct&utm_medium=invite_link)
 
 In this video you'll find:
 
